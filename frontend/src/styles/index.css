@@ -76,6 +76,7 @@ body {
 
     border-radius: 5px;
     border: none;
+    outline: none;
 
     font-family: 'Josefin Sans', sans-serif;
 
@@ -102,12 +103,23 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
 }
 
-.item .circle {
+.circle {
     width: 40px;
+
+}
+
+.tick {
+    position: absolute;
+    left: 43px;
+    width: 13px;
+    height: 13px;
+    padding: 5px;
+    border-radius: 15px;
+    background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%))
 }
 
 .cross {

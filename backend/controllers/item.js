@@ -33,7 +33,7 @@ router.delete('/:id', (request, response, next) => {
       })
       .catch(error => next(error))
 })
-  
+
 // Update item (done / not done)
 router.put('/:id', (request, response, next) => {
     const body = request.body
