@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import './styles/index.css';
+import './styles/darkmode.css';
 import Header from './components/Header.js'
 import CreateNew from './components/CreateNew.js'
 import TodoList from './components/TodoList.js'
@@ -11,6 +12,7 @@ function App() {
 
   const [items, setItems] = useState([]);
 
+  
   // GET all & save to state
   useEffect(() => {
     axios.get('http://localhost:8080/api/items')
@@ -18,9 +20,23 @@ function App() {
     .catch((error) => console.log(error))
   }, [items])
 
+  // Dark mode
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   return (
-    <div className="app">
-      <Header />
+    <div className={`${theme}`}>
+      <Header toggleTheme={toggleTheme} theme={theme}/>
       <CreateNew />
       <TodoList items={items}/>
       <Footer />

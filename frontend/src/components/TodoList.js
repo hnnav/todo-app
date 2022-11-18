@@ -2,26 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 
 function TodoList( {items} ) {
-
-    // Filter items (all / active / completed)
-    const [filter, setFilter] = useState('all');
-
-    let handleFilter = (e) => {
-        setFilter(e.target.id)
-    }
-
-    const filteredItems = items.filter((item) => {
-        if (filter === 'all') {
-            return item;
-        } else if (filter === 'active') {
-            return item.done.includes(false)
-        } else if (filter === 'completed') {
-            return item.done.includes(true)
-        }
-    })
-
-    console.log(filteredItems)
-
+    
     // DELETE by id
     const handleDelete = async (id) => {
         axios.delete(`http://localhost:8080/api/items/${id}`)
@@ -60,11 +41,30 @@ function TodoList( {items} ) {
         itemIds.map(id => handleDelete(id))
     };
 
+    // Filter items (all / active / completed)
+    const [filter, setFilter] = useState('all');
+    let handleFilter = (e) => {
+        setFilter(e.target.id)
+    }
+
+    const filteredItems = items.filter((item) => {
+        if (filter === 'all') {
+            return item;
+        } else if (filter === 'active') {
+            return item.done === false
+        } else if (filter === 'completed') {
+            return item.done === true
+        }
+    })
+    
+    // Items left
+    let undoneItems = items.filter(item => (item.done === false))
+
     return (
         <div>
             <div className="todo-list">
                 <div className="all-items">
-                    {items.map((item) => {
+                    {filteredItems.map((item) => {
                         return <div key={item.id} className="item">
                             <img className="circle" src="\images\gray-circle-outline-png.png" alt="circle" onClick={() => handleCheck(item.id)}></img>
                             {item.done ? <img className="tick" src="/images/icon-check.svg" alt="tick" onClick={() => handleUncheck(item.id)}></img> : null}
@@ -74,7 +74,7 @@ function TodoList( {items} ) {
                     })}
                 </div>
                 <div className="bottom-row">
-                    <p>{items.length} items left</p>
+                    <p>{undoneItems.length} items left</p>
                     <p onClick={handleClearCompleted}>Clear completed</p>
                 </div>
             </div>

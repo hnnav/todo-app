@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Header() {
+function Header( {theme, toggleTheme} ) {
     return (
         <div className="header">
             <h1>TODO</h1>
-            <img className="theme-toggle" src="/images/icon-moon.svg" alt="crescent moon"></img>
+            <img onClick={toggleTheme} className="theme-toggle" src="/images/icon-moon.svg" alt="crescent moon"></img>
         </div>
     )
 }
