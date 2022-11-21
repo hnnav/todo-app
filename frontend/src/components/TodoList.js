@@ -68,7 +68,7 @@ function TodoList( {items} ) {
                         return <div key={item.id} className="item">
                             <img className="circle" src="\images\gray-circle-outline-png.png" alt="circle" onClick={() => handleCheck(item.id)}></img>
                             {item.done ? <img className="tick" src="/images/icon-check.svg" alt="tick" onClick={() => handleUncheck(item.id)}></img> : null}
-                            <p> {item.content} </p>
+                            <p className={`${item.done ? "strike-through" : ""}`}> {item.content} </p>
                             <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(item.id)}></img>
                         </div>
                     })}

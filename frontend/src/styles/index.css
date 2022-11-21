@@ -107,6 +107,10 @@ body {
     gap: 10px;
 }
 
+.strike-through {
+    text-decoration: line-through;
+}
+
 .circle {
     width: 40px;
 

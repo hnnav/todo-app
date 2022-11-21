@@ -12,4 +12,16 @@ body .dark {
 
 .dark .add-new input {
     background-color: hsl(235, 24%, 19%);
+    color: gray;
+}
+
+.dark .todo-list {
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: rgba(2, 2, 2, 0.2) 0px 7px 29px 0px;
+}
+
+.dark .filter {
+    background-color: hsl(235, 24%, 19%);
+    box-shadow: rgba(2, 2, 2, 0.2) 0px 7px 29px 0px;
+
 }
