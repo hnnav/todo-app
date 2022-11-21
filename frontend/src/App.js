@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import './styles/index.css';
 import './styles/darkmode.css';
+import './styles/desktop.css';
 import Header from './components/Header.js'
 import CreateNew from './components/CreateNew.js'
 import TodoList from './components/TodoList.js'

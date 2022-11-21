@@ -109,11 +109,11 @@ body {
 
 .strike-through {
     text-decoration: line-through;
+    color: hsl(0, 0%, 78%);
 }
 
 .circle {
     width: 40px;
-
 }
 
 .tick {

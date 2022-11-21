@@ -1,0 +1,31 @@
+/* Desktop mode 1440 px */
+
+@media only screen and (min-width: 900px) {
+    
+    body {
+        background-image: url("/public/images/bg-desktop-light.jpg");
+    }
+
+    #root {
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+    }
+
+    .header {
+        font-size: 18px;
+    }
+
+    .add-new input {
+        width: 100%;
+    }
+
+    .todo-list {
+        margin-top: 20px;
+    }
+
+    .tick {
+        left: 484px;
+    }
+
+}

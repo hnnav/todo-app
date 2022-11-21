@@ -1,3 +1,4 @@
+/* Darkmode */
 
 .dark {
     background-color: hsl(235, 21%, 11%);
@@ -20,8 +21,21 @@ body .dark {
     box-shadow: rgba(2, 2, 2, 0.2) 0px 7px 29px 0px;
 }
 
+.dark .strike-through {
+    color: rgb(85, 84, 84);
+}
+
 .dark .filter {
     background-color: hsl(235, 24%, 19%);
     box-shadow: rgba(2, 2, 2, 0.2) 0px 7px 29px 0px;
+}
+
+/* Darkmode desktop 1004px */
+
+@media only screen and (min-width: 900px) {
+
+    .dark {
+        background-image: url("/public/images/bg-desktop-dark.jpg");
+    }
 
 }
