@@ -19,7 +19,7 @@ function CreateNew() {
 
     return (
         <form className="add-new" onSubmit={handleSubmit}>
-            <input placeholder="Create a new todo..." name="input"></input>
+            <input placeholder="Create a new todo..." name="input" spellcheck="false"></input>
             <button type="submit"/>
         </form>
     )
