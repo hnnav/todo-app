@@ -59,6 +59,7 @@ body {
 .theme-toggle {
     width: 20px;
     margin-top: 15px;
+    cursor: pointer;
 }
 
 .add-new {
@@ -115,6 +116,7 @@ body {
 
 .circle {
     width: 40px;
+    cursor: pointer;
 }
 
 .tick {
@@ -124,17 +126,23 @@ body {
     height: 13px;
     padding: 5px;
     border-radius: 15px;
-    background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%))
+    background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+    cursor: pointer;
 }
 
 .cross {
     margin-left: auto;
+    cursor: pointer;
 }
 
 .bottom-row {
     padding: 15px 0px 10px 15px;
     display: flex;
     justify-content: space-between;
+}
+
+.clear-completed {
+    cursor: pointer;
 }
 
 .filter {
@@ -145,6 +153,7 @@ body {
     background-color: white;
     border-radius: 5px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    cursor: pointer;
 }
 
 .filter p:hover {

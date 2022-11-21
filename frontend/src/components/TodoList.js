@@ -75,7 +75,7 @@ function TodoList( {items} ) {
                 </div>
                 <div className="bottom-row">
                     <p>{itemsLeft} items left</p>
-                    <p onClick={handleClearCompleted}>Clear completed</p>
+                    <p className="clear-completed" onClick={handleClearCompleted}>Clear completed</p>
                 </div>
             </div>
             <div className="filter">
