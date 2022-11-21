@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 
 function TodoList( {items} ) {
@@ -10,7 +10,7 @@ function TodoList( {items} ) {
         .catch((error) => console.log(error))
     };
 
-    // UPDATE done
+    // UPDATE if done
     const handleCheck = async (id) => {
         axios.put(`http://localhost:8080/api/items/${id}`, {
             done: true
@@ -57,8 +57,8 @@ function TodoList( {items} ) {
         }
     })
     
-    // Items left
-    let undoneItems = items.filter(item => (item.done === false))
+    // Number of items not done
+    let itemsLeft = items.filter(item => (item.done === false)).length
 
     return (
         <div>
@@ -74,7 +74,7 @@ function TodoList( {items} ) {
                     })}
                 </div>
                 <div className="bottom-row">
-                    <p>{undoneItems.length} items left</p>
+                    <p>{itemsLeft} items left</p>
                     <p onClick={handleClearCompleted}>Clear completed</p>
                 </div>
             </div>

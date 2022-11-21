@@ -6,15 +6,13 @@ import './styles/desktop.css';
 import Header from './components/Header.js'
 import CreateNew from './components/CreateNew.js'
 import TodoList from './components/TodoList.js'
-import Filter from './components/Filter.js'
 import Footer from './components/Footer.js'
 
 function App() {
 
+  // FETCH all & save to state
   const [items, setItems] = useState([]);
 
-  
-  // GET all & save to state
   useEffect(() => {
     axios.get('http://localhost:8080/api/items')
     .then(res => {setItems(res.data)})
@@ -39,7 +37,7 @@ function App() {
     <div className={`${theme}`}>
       <Header toggleTheme={toggleTheme} theme={theme}/>
       <CreateNew />
-      <TodoList items={items}/>
+      <TodoList items={items} />
       <Footer />
     </div>
   )

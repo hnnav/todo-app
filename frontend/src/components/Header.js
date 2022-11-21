@@ -7,7 +7,6 @@ function Header( {theme, toggleTheme} ) {
             {theme === 'light' ? 
                 <img onClick={toggleTheme} className="theme-toggle" src="/images/icon-moon.svg" alt="moon"></img> 
                 : <img onClick={toggleTheme} className="theme-toggle" src="/images/icon-sun.svg" alt="sun"></img>}
-            
         </div>
     )
 }
