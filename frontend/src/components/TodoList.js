@@ -64,12 +64,12 @@ function TodoList( {items} ) {
         <div>
             <div className="todo-list">
                 <div className="all-items">
-                    {filteredItems.map((item) => {
-                        return <div key={item.id} className="item">
-                            <img className="circle" src="\images\gray-circle-outline-png.png" alt="circle" onClick={() => handleCheck(item.id)}></img>
-                            {item.done ? <img className="tick" src="/images/icon-check.svg" alt="tick" onClick={() => handleUncheck(item.id)}></img> : null}
-                            <p className={`${item.done ? "strike-through" : ""}`}> {item.content} </p>
-                            <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(item.id)}></img>
+                    {filteredItems.map(({id, content, done}) => {
+                        return <div key={id} className="item">
+                            <img className="circle" src="\images\gray-circle-outline-png.png" alt="circle" onClick={() => handleCheck(id)}></img>
+                            {done ? <img className="tick" src="/images/icon-check.svg" alt="tick" onClick={() => handleUncheck(id)}></img> : null}
+                            <p className={`${done ? "strike-through" : ""}`}> {content} </p>
+                            <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(id)}></img>
                         </div>
                     })}
                 </div>
