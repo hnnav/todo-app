@@ -10,7 +10,7 @@ function CreateNew() {
             content: e.target.input.value
         }
 
-        axios.post('http://localhost:8080/api/items', newTodo)
+        axios.post('https://todo-app-api-u0az.onrender.com/api/items', newTodo)
         .then(res => console.log(res.data));
 
         // Clear input field after submit

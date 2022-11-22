@@ -5,14 +5,14 @@ function TodoList( {items} ) {
     
     // DELETE by id
     const handleDelete = async (id) => {
-        axios.delete(`http://localhost:8080/api/items/${id}`)
+        axios.delete(`https://todo-app-api-u0az.onrender.com/api/items/${id}`)
         .then(response => {console.log(response)})
         .catch((error) => console.log(error))
     };
 
     // UPDATE if done
     const handleCheck = async (id) => {
-        axios.put(`http://localhost:8080/api/items/${id}`, {
+        axios.put(`https://todo-app-api-u0az.onrender.com/api/items/${id}`, {
             done: true
         })
         .then(response => {console.log(response)})
@@ -21,7 +21,7 @@ function TodoList( {items} ) {
 
     // UPDATE not done
     const handleUncheck = async (id) => {
-        axios.put(`http://localhost:8080/api/items/${id}`, {
+        axios.put(`https://todo-app-api-u0az.onrender.com/api/items/${id}`, {
             done: false
         })
         .then(response => {console.log(response)})

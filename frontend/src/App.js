@@ -6,7 +6,6 @@ import './styles/desktop.css';
 import Header from './components/Header.js'
 import CreateNew from './components/CreateNew.js'
 import TodoList from './components/TodoList.js'
-import Footer from './components/Footer.js'
 
 function App() {
 
@@ -14,7 +13,7 @@ function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/items')
+    axios.get('https://todo-app-api-u0az.onrender.com/api/items')
     .then(res => {setItems(res.data)})
     .catch((error) => console.log(error))
   }, [items])
@@ -38,7 +37,6 @@ function App() {
       <Header toggleTheme={toggleTheme} theme={theme}/>
       <CreateNew />
       <TodoList items={items} />
-      <Footer />
     </div>
   )
 }
