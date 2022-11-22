@@ -3,7 +3,7 @@
 @media only screen and (min-width: 900px) {
     
     body {
-        background-image: url("/public/images/bg-desktop-light.jpg");
+        background-image: url("/images/bg-desktop-light.jpg");
     }
 
     #root {
