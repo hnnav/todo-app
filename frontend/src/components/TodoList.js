@@ -47,6 +47,7 @@ function TodoList( {items} ) {
         setFilter(e.target.id)
     }
 
+    // eslint-disable-next-line
     const filteredItems = items.filter((item) => {
         if (filter === 'all') {
             return item;
