@@ -95,7 +95,6 @@ body {
 
 .todo-list {
     padding: 15px 20px 0px 5px;
-
     margin-top: 60px;
     background-color: white;
     border-radius: 5px;
@@ -143,6 +142,10 @@ body {
 
 .clear-completed {
     cursor: pointer;
+}
+
+.clear-completed:hover {
+    color: hsl(220, 98%, 61%);
 }
 
 .filter {
