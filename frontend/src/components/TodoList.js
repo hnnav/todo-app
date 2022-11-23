@@ -10,19 +10,14 @@ function TodoList( {items} ) {
         .catch((error) => console.log(error))
     };
 
-    // UPDATE if done
-    const handleCheck = async (id) => {
-        axios.put(`https://todo-app-api-u0az.onrender.com/api/items/${id}`, {
-            done: true
-        })
-        .then(response => {console.log(response)})
-        .catch((error) => console.log(error))
-    };
+    // UPDATE done / not done
+    const handleDone = async (id) => {
 
-    // UPDATE not done
-    const handleUncheck = async (id) => {
+        let oldStatus = items.filter(item => (item.id === id))[0].done
+        let newStatus = oldStatus ? false : true
+
         axios.put(`https://todo-app-api-u0az.onrender.com/api/items/${id}`, {
-            done: false
+            done: newStatus
         })
         .then(response => {console.log(response)})
         .catch((error) => console.log(error))
@@ -67,8 +62,11 @@ function TodoList( {items} ) {
                 <div className="all-items">
                     {filteredItems.map(({id, content, done}) => {
                         return <div key={id} className="item">
-                            <img className="circle" src="\images\gray-circle-outline-png.png" alt="circle" onClick={() => handleCheck(id)}></img>
-                            {done ? <img className="tick" src="/images/icon-check.svg" alt="tick" onClick={() => handleUncheck(id)}></img> : null}
+                            <img 
+                                className={`${done ? "checked-circle" : "empty-circle"}`} 
+                                src="/images/circle-outline.png" alt="circle" 
+                                onClick={() => handleDone(id)}>
+                            </img>
                             <p className={`${done ? "strike-through" : ""}`}> {content} </p>
                             <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(id)}></img>
                         </div>

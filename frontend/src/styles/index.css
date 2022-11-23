@@ -74,7 +74,7 @@ body {
     margin-top: 20px;
     padding: 20px;
     padding-left: 50px;
-    width: 80%;
+    width: 100%;
 
     border-radius: 5px;
     border: none;
@@ -83,10 +83,10 @@ body {
     font-family: 'Josefin Sans', sans-serif;
     color: grey;
 
-    background-image: url("/images/gray-circle-outline-png.png");
+    background-image: url("/images/circle-outline.png");
     background-repeat: no-repeat;
-    background-size: 40px;
-    background-position: 6px;
+    background-size: 25px;
+    background-position: 10px;
 }
 
 .add-new button {
@@ -103,6 +103,7 @@ body {
 }
 
 .item {
+    padding-left: 5px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -115,19 +116,17 @@ body {
     color: hsl(0, 0%, 78%);
 }
 
-.circle {
-    width: 40px;
+.empty-circle {
+    width: 25px;
     cursor: pointer;
 }
 
-.tick {
-    position: absolute;
-    left: 43px;
-    width: 13px;
-    height: 13px;
-    padding: 5px;
+.checked-circle {
+    width: 25px;
     border-radius: 15px;
-    background: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+    background: url("/images/icon-check.svg"), linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+    background-repeat: no-repeat;
+    background-position: center;
     cursor: pointer;
 }
 
