@@ -25,14 +25,8 @@ function TodoList( {items} ) {
 
     // Clear completed (Delete if done)
     const handleClearCompleted = async (id) => {
-
-        // Find all completed
         let completedItems = items.filter(item => (item.done === true))
-
-        // get ID's
         let itemIds = completedItems.map(item => item.id)
-
-        // delete each by ID
         itemIds.map(id => handleDelete(id))
     };
 
@@ -41,7 +35,7 @@ function TodoList( {items} ) {
     let handleFilter = (e) => {
         setFilter(e.target.id)
     }
-
+    
     // eslint-disable-next-line
     const filteredItems = items.filter((item) => {
         if (filter === 'all') {
@@ -59,7 +53,6 @@ function TodoList( {items} ) {
     return (
         <div>
             <div className="todo-list">
-                <div className="all-items">
                     {filteredItems.map(({id, content, done}) => {
                         return <div key={id} className="item">
                             <img 
@@ -71,7 +64,6 @@ function TodoList( {items} ) {
                             <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(id)}></img>
                         </div>
                     })}
-                </div>
                 <div className="bottom-row">
                     <p>{itemsLeft} items left</p>
                     <p className="clear-completed" onClick={handleClearCompleted}>Clear completed</p>
