@@ -1,4 +1,0 @@
-PUT http://localhost:8080/api/items/6374b7612915100ab4a742d3
-Content-Type: application/json
-
-{ "done": true }

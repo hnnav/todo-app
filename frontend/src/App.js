@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import './styles/index.css';
-import './styles/darkmode.css';
-import './styles/desktop.css';
-import Header from './components/Header.js'
-import CreateNew from './components/CreateNew.js'
-import TodoList from './components/TodoList.js'
+import './styles/index.css'
+import './styles/darkmode.css'
+import './styles/desktop.css'
+import './styles/signin.css'
+import Header from './components/Header'
+import CreateNew from './components/CreateNew'
+import TodoList from './components/TodoList'
+import Register from './components/Register'
+import Login from './components/Login'
 
 function App() {
 
@@ -37,6 +40,8 @@ function App() {
       <Header toggleTheme={toggleTheme} theme={theme}/>
       <CreateNew />
       <TodoList items={items} />
+      <Login />
+      <Register />
     </div>
   )
 }
