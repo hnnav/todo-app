@@ -1,32 +1,37 @@
-const express = require('express');
-const router = express.Router();
+const itemsRouter = require('express').Router()
 const Item = require('../models/item')
+const User = require('../models/user')
 
 // ROUTES
 
 // All items
-router.get('/', (request, response) => {
+itemsRouter.get('/', (request, response) => {
     Item.find({}).then(items => {
       response.json(items)
     })
 })
   
 // Add item
-router.post('/', (request, response, next) => {
+itemsRouter.post('/', async (request, response, next) => {
     const body = request.body
+
+    const user = await User.findById(body.userId)
+
     const item = new Item({
       content: body.content,
       done: body.done || false,
+      user: user.id
     })
-    item.save()
-      .then(savedItem => {
-        response.json(savedItem)
-      })
-      .catch(error => next(error))
+
+    const savedItem = await item.save()
+    user.items = user.items.concat(savedItem._id)
+    await user.save()
+    
+    response.json(savedItem)
 })
   
 // Delete item
-router.delete('/:id', (request, response, next) => {
+itemsRouter.delete('/:id', (request, response, next) => {
     Item.findByIdAndRemove(request.params.id)
       .then(() => {
         response.status(204).end()
@@ -35,7 +40,7 @@ router.delete('/:id', (request, response, next) => {
 })
 
 // Update item (done / not done)
-router.put('/:id', (request, response, next) => {
+itemsRouter.put('/:id', (request, response, next) => {
     const body = request.body
     const item = {
       done: body.done,
@@ -47,4 +52,4 @@ router.put('/:id', (request, response, next) => {
       .catch(error => next(error))
 })
   
-module.exports = router;
+module.exports = itemsRouter;

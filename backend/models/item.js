@@ -5,7 +5,11 @@ const itemSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    done: Boolean
+    done: Boolean,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
 })
 
 itemSchema.set('toJSON', {

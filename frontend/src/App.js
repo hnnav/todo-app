@@ -12,14 +12,23 @@ import Login from './components/Login'
 
 function App() {
 
-  // FETCH all & save to state
-  const [items, setItems] = useState([]);
+  // FETCH all items & save to state
+  const [items, setItems] = useState([])
 
   useEffect(() => {
     axios.get('https://todo-app-api-u0az.onrender.com/api/items')
     .then(res => {setItems(res.data)})
     .catch((error) => console.log(error))
   }, [items])
+
+  // FETCH all users & save to state
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/users/')
+    .then(res => {setUsers(res.data)})
+    .catch((error) => console.log(error))
+  }, [users])
 
   // Dark mode
   const [theme, setTheme] = useState('light');
@@ -40,7 +49,7 @@ function App() {
       <Header toggleTheme={toggleTheme} theme={theme}/>
       <CreateNew />
       <TodoList items={items} />
-      <Login />
+      <Login users={users} />
       <Register />
     </div>
   )

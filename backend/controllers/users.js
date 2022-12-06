@@ -5,38 +5,33 @@ const User = require('../models/user')
 // ROUTES
 
 // GET All users
-usersRouter.get('/', (request, response) => {
-  User.find({}).then(users => {
-    response.json(users)
-  })
+usersRouter.get('/', async (request, response) => {
+  const users = await User.find({})
+  response.json(users)
 })
 
 // POST (Create user)
-usersRouter.post('/', (request, response, next) => {
-  const body = request.body
-  const user = new User({
-    username: body.username,
-    email: body.email,
-    password: body.password
-  })
-  user.save()
-    .then(savedUser => {
-      response.json(savedUser)
-    })
-    .catch(error => next(error))
-})
+usersRouter.post('/', async (request, response, next) => {
+  const { username, password } = request.body
 
-// Login (find user)
-usersRouter.get("/:id", async (request, response) => {
-  const user = await User.findOne({
-    username: request.body.username,
-    password: request.body.password
-  });
-  if (user) {
-    response.json(user.toJSON());
-  } else {
-    response.status(404).end();
+  const existingUser = await User.findOne({ username })
+  if (existingUser) {
+    return response.status(400).json({
+      error: 'username must be unique'
+    })
   }
-});
+
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(password, saltRounds)
+
+  const user = new User({
+    username,
+    passwordHash
+  })
+
+  const savedUser = await user.save()
+
+  response.status(201).json(savedUser)
+})
 
 module.exports = usersRouter

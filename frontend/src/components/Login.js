@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Login() {
+function Login( {users} ) {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -8,12 +8,14 @@ function Login() {
     function loginUser(e) {
         e.preventDefault();
 
-        const user = {
-            username: username,
-            password: password,
-        }
-
-        console.log(user)
+        // find user by username & password
+        users.filter((user) => {
+            if (user.username === username && user.password === password) {
+                return user
+            } else {
+                alert('incorrect username or password')
+            }
+        })
 
         // axios.get('http://localhost:8080/api/users/, user)
         // .then(res => console.log(res.data));

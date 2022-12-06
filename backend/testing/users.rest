@@ -4,3 +4,8 @@ Content-Type: application/json
     "email": "user@gmail.com",
     "password": "123"
 }
+###
+GET http://localhost:8080/api/users/638f3681e4eccabf9de9992f
+{   "username": "k",
+    "password": "k"
+}

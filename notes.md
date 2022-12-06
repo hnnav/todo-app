@@ -1,0 +1,2 @@
+- Registering users works and saves to backend
+- Login just console logs inputs as an object
