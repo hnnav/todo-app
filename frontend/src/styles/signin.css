@@ -5,6 +5,21 @@
     gap: 10px;
 }
 
+.login__top-row, .register__top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form ion-icon, .register-form ion-icon {
+    font-size: 30px;
+}
+
+.login-form ion-icon:hover, .register-form ion-icon:hover {
+    color: lightgrey;
+    cursor: pointer;
+}
+
 .register-form input, .login-form input {
     padding: 10px;
 
@@ -15,4 +30,9 @@
 
     font-family: 'Josefin Sans', sans-serif;
     color: grey;
+}
+
+.register-form input[type=submit]:hover, 
+.login-form input[type=submit]:hover {
+    cursor: pointer;
 }

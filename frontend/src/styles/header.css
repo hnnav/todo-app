@@ -1,0 +1,41 @@
+.header {
+    color: white;
+}
+
+.header__top-row {
+    font-size: 13px;
+    letter-spacing: 7px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.theme-toggle {
+    width: 20px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.header__not-logged-in {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px
+}
+
+.header__not-logged-in h3 {
+    font-size: 18px;
+}
+
+.header__not-logged-in h3:hover {
+    color: lightgrey;
+    cursor: pointer;
+}
+
+.header__logged-in {
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

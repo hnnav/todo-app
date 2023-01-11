@@ -7,19 +7,39 @@ import './styles/signin.css'
 import Header from './components/Header'
 import CreateNew from './components/CreateNew'
 import TodoList from './components/TodoList'
-import Register from './components/Register'
-import Login from './components/Login'
+import service from "./service/items"
 
 function App() {
 
-  // FETCH all & save to state
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([])
+  const [user, setUser] = useState("");
+  
+  // LOGIN
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("user");
+    console.log(loggedUserJSON);
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      service.setToken(user.token);
+    }
+  }, []);
 
+  // FETCH all items & save to state
   useEffect(() => {
     axios.get('https://todo-app-api-u0az.onrender.com/api/items')
     .then(res => {setItems(res.data)})
     .catch((error) => console.log(error))
   }, [items])
+
+  // FETCH all users & save to state
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/users/')
+    .then(res => {setUsers(res.data)})
+    .catch((error) => console.log(error))
+  }, [users])
 
   // Dark mode
   const [theme, setTheme] = useState('light');
@@ -37,11 +57,9 @@ function App() {
 
   return (
     <div className={`${theme}`}>
-      <Header toggleTheme={toggleTheme} theme={theme}/>
+      <Header toggleTheme={toggleTheme} theme={theme} user={user} setUser={setUser}/>
       <CreateNew />
       <TodoList items={items} />
-      <Login />
-      <Register />
     </div>
   )
 }

@@ -1,42 +1,57 @@
 const bcrypt = require('bcrypt')
+const { request, response } = require("express")
 const usersRouter = require('express').Router()
 const User = require('../models/user')
+const jwt = require("jsonwebtoken")
 
 // ROUTES
 
-// GET All users
-usersRouter.get('/', (request, response) => {
-  User.find({}).then(users => {
-    response.json(users)
-  })
+// GET all users
+usersRouter.get('/', async (request, response) => {
+  const users = await User
+    .find({}).populate('items')
+
+  response.json(users)
 })
 
-// POST (Create user)
-usersRouter.post('/', (request, response, next) => {
-  const body = request.body
-  const user = new User({
-    username: body.username,
-    email: body.email,
-    password: body.password
-  })
-  user.save()
-    .then(savedUser => {
-      response.json(savedUser)
-    })
-    .catch(error => next(error))
-})
-
-// Login (find user)
+// GET user by ID
 usersRouter.get("/:id", async (request, response) => {
-  const user = await User.findOne({
-    username: request.body.username,
-    password: request.body.password
-  });
+  const user = await User.findById(request.params.id)
   if (user) {
-    response.json(user.toJSON());
+    response.json(user.toJSON())
   } else {
-    response.status(404).end();
+    response.status(404).end()
   }
-});
+})
+
+// CREATE user
+usersRouter.post('/', async (request, response) => {
+  const { username, password } = request.body
+
+  const existingUser = await User.findOne({ username })
+  if (existingUser) {
+    return response.status(400).json({
+      error: 'username must be unique'
+    })
+  }
+
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(password, saltRounds)
+
+  const user = new User({
+    username,
+    passwordHash,
+  })
+
+  const savedUser = await user.save()
+  console.log(savedUser);
+  response.status(201).json(savedUser)
+})
+
+// DELETE user
+usersRouter.delete("/:id", async (request, response) => {
+  await User.findByIdAndRemove(request.params.id);
+  response.status(204).end();
+})
 
 module.exports = usersRouter

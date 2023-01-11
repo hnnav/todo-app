@@ -17,10 +17,14 @@ app.use(cors())
 app.use(express.json())
 
 // routers
-const router = require('./controllers/item')
-app.use("/api/items", router);
+const itemsRouter = require('./controllers/item')
+app.use('/api/items', itemsRouter)
+
 const usersRouter = require('./controllers/users')
 app.use('/api/users', usersRouter)
+
+const loginRouter = require('./controllers/login')
+app.use('/api/login', loginRouter)
 
 // port
 const port = process.env.PORT || 8080

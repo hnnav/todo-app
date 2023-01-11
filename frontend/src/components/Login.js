@@ -1,31 +1,39 @@
 import React, { useState } from 'react'
+import service from "../service/items"
+import loginService from "../service/login"
 
-function Login() {
+function Login(props) {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    function loginUser(e) {
-        e.preventDefault();
-
-        const user = {
-            username: username,
-            password: password,
+    const handleLogin = async (event) => {
+        event.preventDefault()
+        try {
+            const user = await loginService.login({
+                username,
+                password,
+            })
+            console.log(user);
+            window.localStorage.setItem("user", JSON.stringify(user))
+            service.setToken(user.token)
+            props.setUser(user)
+            handleClose()
+        } catch (exception) {
+            console.error(exception)
         }
-
-        console.log(user)
-
-        // axios.get('http://localhost:8080/api/users/, user)
-        // .then(res => console.log(res.data));
-
-        // Clear input field after submit
-        // e.target.input.value = ""
     }
 
-
+    const handleClose = () => {
+        props.setLoginWindow(false)
+    }
+    
     return (
-        <form className="login-form" onSubmit={loginUser}>
-            <h3>Login here:</h3>
+        <form className="login-form" onSubmit={handleLogin}>
+            <div className="login__top-row">
+                <h3>Login here:</h3>
+                <ion-icon name="close-outline" onClick={handleClose}></ion-icon>
+            </div>
             <input 
                 placeholder="username"
                 value={username}

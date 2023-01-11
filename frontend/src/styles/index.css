@@ -15,22 +15,6 @@ body {
     font-size: 13px;
 }
 
-.header {
-    color: white;
-    font-size: 13px;
-    letter-spacing: 7px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.theme-toggle {
-    width: 20px;
-    margin-top: 15px;
-    cursor: pointer;
-}
-
 .add-new {
     display: flex;
     flex-direction: row;

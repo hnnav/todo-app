@@ -4,7 +4,6 @@
     background-color: hsl(235, 21%, 11%);
     background-image: url("/images/bg-mobile-dark.jpg");
     background-repeat: no-repeat;
-
 }
 
 body .dark {
@@ -28,6 +27,24 @@ body .dark {
 .dark .filter {
     background-color: hsl(235, 24%, 19%);
     box-shadow: rgba(2, 2, 2, 0.2) 0px 7px 29px 0px;
+}
+
+.dark .header__not-logged-in {
+    text-shadow: 2px 2px hsl(235, 24%, 19%);
+    color: rgb(112, 112, 112);
+}
+
+.dark .login-form h3, .dark .register-form h3 {
+    text-shadow: 2px 2px hsl(235, 24%, 19%);
+    color: rgb(112, 112, 112);
+}
+
+.dark .login-form ion-icon, .dark .register-form ion-icon {
+    color: hsl(235, 24%, 19%);
+}
+
+.dark .register-form input, .dark .login-form input {
+    background-color: hsl(235, 24%, 19%);
 }
 
 /* Darkmode desktop 1004px */

@@ -1,45 +1,42 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import userService from "../service/users"
 
-function Register() {
+function Register(props) {
 
     const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     function registerUser(e) {
         e.preventDefault();
-
         const newUser = {
-            username: username,
-            email: email,
-            password: password,
+            username: e.target.username.value,
+            password: e.target.password.value,
         }
+        userService.createNewUser(newUser)
+        handleClose()
+    }
 
-        axios.post('http://localhost:8080/api/users/', newUser)
-        .then(res => console.log(res.data));
-
-        // Clear input field after submit
-        // e.target.input.value = ""
+    const handleClose = () => {
+        props.setRegisterWindow(false)
     }
 
     return (
         <form className="register-form" onSubmit={registerUser}>
-            <h3>Register here:</h3>
+            <div className="register__top-row">
+                <h3>Register here:</h3>
+                <ion-icon name="close-outline" onClick={handleClose}></ion-icon>
+            </div>
             <input 
                 placeholder="username"
+                name="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 type="text"
             />
             <input 
-                placeholder="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-            />
-            <input 
                 placeholder="password"
+                name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
