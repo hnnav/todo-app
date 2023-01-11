@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 import userService from "../service/users"
 
 function Register(props) {

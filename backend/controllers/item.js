@@ -24,29 +24,25 @@ itemsRouter.get('/:id', async (request, response) => {
     response.status(404).end()
   }
 })
-  
-// Add item
+
+// CREATE ITEM
 itemsRouter.post('/', async (request, response) => {
   const body = request.body
 
-  const token = getTokenFrom(request)
-  const decodedToken = jwt.verify(token, process.env.SECRET)
-  if (!token || !decodedToken.id) {
-    return response.status(401).json({ error: 'token missing or invalid' })
-  }
-  const user = await User.findById(decodedToken.id)
+  const authorization = request.get('authorization')
+  let user = jwt.verify(authorization, process.env.SECRET)
 
   const item = new Item({
     content: body.content,
     done: body.done || false,
-    user: user._id
+    user: user.id
   })
 
-  const savedItem = await item.save()
-  user.items = user.items.concat(savedItem._id)
-  await user.save()
-
-  response.status(201).json(savedItem)
+  const savedItem = await item.save();
+  user = await User.findById(user.id);
+  user.items = user.items.concat(item);
+  await user.save();
+  response.json(savedItem)
 })
   
 // Delete item

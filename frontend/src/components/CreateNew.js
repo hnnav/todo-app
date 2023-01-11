@@ -1,24 +1,21 @@
 import React from 'react'
-import axios from 'axios'
+import itemService from "../service/items"
 
 function CreateNew() {
 
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        const newTodo = {
-            content: e.target.input.value
+    const addItem = (e) => {
+        e.preventDefault()
+        const newItem = {
+          content: e.target.input.value,
         }
-
-        axios.post('https://todo-app-api-u0az.onrender.com/api/items', newTodo)
-        .then(res => console.log(res.data));
+        itemService.createNew(newItem)
 
         // Clear input field after submit
         e.target.input.value = ""
-    }
+      }
 
     return (
-        <form className="add-new" onSubmit={handleSubmit}>
+        <form className="add-new" onSubmit={addItem}>
             <input placeholder="Create a new todo..." name="input" ></input>
             <button type="submit"/>
         </form>
