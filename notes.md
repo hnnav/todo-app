@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 Items:
 + Getting all items
@@ -18,3 +19,7 @@ Frontend:
 - Login with user
 - Logout
 + Register new users
+=======
+- Registering users works and saves to backend
+- Login just console logs inputs as an object
+>>>>>>> 240bc5aa1a68a7fd106bda7b23a660470aeb6a23
