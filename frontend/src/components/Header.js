@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../styles/header.css'
 import Login from './Login'
 import Register from './Register'
+import itemService from "../service/items"
 
 function Header( {theme, toggleTheme, user, setUser} ) {
 
@@ -36,7 +37,8 @@ function Header( {theme, toggleTheme, user, setUser} ) {
                 <h3>Welcome, {user.username}</h3>
                 <h3 onClick={() => {
                     localStorage.clear() 
-                    setUser("");
+                    setUser("")
+                    itemService.setToken(null)
                 }}>Logout</h3>
             </div>}
 

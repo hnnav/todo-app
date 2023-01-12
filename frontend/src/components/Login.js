@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import service from "../service/items"
+import itemService from "../service/items"
 import loginService from "../service/login"
 
 function Login(props) {
@@ -14,10 +14,10 @@ function Login(props) {
                 username,
                 password,
             })
-            console.log(user);
             window.localStorage.setItem("user", JSON.stringify(user))
-            service.setToken(user.token)
+            itemService.setToken(user.token)
             props.setUser(user)
+            console.log('Login form handler:', user)
             handleClose()
         } catch (exception) {
             console.error(exception)

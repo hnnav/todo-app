@@ -17,7 +17,6 @@ const createNew = async newObject => {
   const config = {
     headers: { Authorization: token },
   }
-  // Token defined when logged in, backend auth headers too
   const response = await axios.post(baseUrl, newObject, config)
   return response.data
 }

@@ -10,29 +10,20 @@ import itemService from "./service/items"
 
 function App() {
 
-  const [items, setItems] = useState([])
-  const [user, setUser] = useState("");
-  
   // LOGIN
+  const [user, setUser] = useState("")
+
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("user")
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      // user.token defined
       itemService.setToken(user.token)
+      setUser(user)
     }
   }, [])
 
-  // FETCH all items & save to state
-  useEffect(() => {
-    itemService.getAll().then((item) => {
-      setItems(item);
-    });
-  }, [items]);
-
-  // Dark mode
-  const [theme, setTheme] = useState('light');
+  // DARK MODE
+  const [theme, setTheme] = useState('light')
 
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -49,7 +40,7 @@ function App() {
     <div className={`${theme}`}>
       <Header toggleTheme={toggleTheme} theme={theme} user={user} setUser={setUser}/>
       <CreateNew user={user}/>
-      <TodoList items={items} />
+      <TodoList user={user}/>
     </div>
   )
 }

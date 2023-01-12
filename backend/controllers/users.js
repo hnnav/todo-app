@@ -1,10 +1,7 @@
 const bcrypt = require('bcrypt')
-const { request, response } = require("express")
+const jwt = require('jsonwebtoken')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
-const jwt = require("jsonwebtoken")
-
-// ROUTES
 
 // GET all users
 usersRouter.get('/', async (request, response) => {
@@ -15,14 +12,18 @@ usersRouter.get('/', async (request, response) => {
 })
 
 // GET user by ID
-usersRouter.get("/:id", async (request, response) => {
-  const user = await User.findById(request.params.id)
-  if (user) {
-    response.json(user.toJSON())
-  } else {
-    response.status(404).end()
-  }
-})
+// usersRouter.get("/:id", async (request, response) => {
+//   const authorization = request.get("authorization")
+//   console.log("backend auth:", authorization)
+//   let user = jwt.verify(authorization, process.env.SECRET)
+// 
+//   user = await User.findById(request.params.id)
+//   if (user) {
+//     response.json(user.toJSON())
+//   } else {
+//     response.status(404).end()
+//   }
+// })
 
 // CREATE user
 usersRouter.post('/', async (request, response) => {
