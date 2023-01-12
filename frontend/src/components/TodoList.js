@@ -22,18 +22,15 @@ function TodoList({ user }) {
 //        .catch((error) => console.log(error))
 //    };
 //
-//    // UPDATE done / not done
-//    const handleDone = async (id) => {
-//
-//        let oldStatus = items.filter(item => (item.id === id))[0].done
-//        let newStatus = oldStatus ? false : true
-//
-//        axios.put(`https://todo-app-api-u0az.onrender.com/api/items/${id}`, {
-//            done: newStatus
-//        })
-//        .then(response => {console.log(response)})
-//        .catch((error) => console.log(error))
-//    };
+
+    // UPDATE done / not done
+    const handleDone = async (id) => {
+        let oldStatus = items.filter(item => (item.id === id))[0].done
+        const updatedItem = {
+            done: !oldStatus
+        }
+        itemService.updateDone(id, updatedItem)
+    }
 //
 //    // Clear completed (Delete if done)
 //    const handleClearCompleted = async (id) => {
@@ -69,7 +66,7 @@ function TodoList({ user }) {
                             <img 
                                 className={`${done ? "checked-circle" : "empty-circle"}`} 
                                 src="/images/circle-outline.png" alt="circle" 
-                                /* onClick={() => handleDone(id)} */>
+                                onClick={() => handleDone(id)}>
                             </img>
                             <p className={`${done ? "strike-through" : ""}`}> {content} </p>
                             {/* <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(id)}></img> */}
