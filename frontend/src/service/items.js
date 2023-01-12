@@ -28,5 +28,9 @@ const updateDone = async (id, updatedItem) => {
   const request = await axios.put(`${baseUrl}/${id}`, updatedItem, config)
 }
 
+const deleteItem = (id) => {
+  const request = axios.delete(`${baseUrl}/${id}`)
+  return request.then((response) => response.data)
+}
 
-export default { getAll, createNew, setToken, updateDone }
+export default { getAll, createNew, setToken, updateDone, deleteItem }

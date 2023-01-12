@@ -14,14 +14,10 @@ function TodoList({ user }) {
         })
     }, [items])
 
-    
-//    // DELETE by id
-//    const handleDelete = async (id) => {
-//        axios.delete(`https://todo-app-api-u0az.onrender.com/api/items/${id}`)
-//        .then(response => {console.log(response)})
-//        .catch((error) => console.log(error))
-//    };
-//
+    // DELETE by id
+    const handleDelete = async (id) => {
+        itemService.deleteItem(id)
+    }
 
     // UPDATE done / not done
     const handleDone = async (id) => {
@@ -69,7 +65,7 @@ function TodoList({ user }) {
                                 onClick={() => handleDone(id)}>
                             </img>
                             <p className={`${done ? "strike-through" : ""}`}> {content} </p>
-                            {/* <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(id)}></img> */}
+                            <img className="cross" src="\images\icon-cross.svg" alt="cross" onClick={() => handleDelete(id)}></img>
                         </div>
                     })}
                 {/* <div className="bottom-row">
