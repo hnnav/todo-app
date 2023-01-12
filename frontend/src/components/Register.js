@@ -22,10 +22,7 @@ function Register(props) {
 
     return (
         <form className="register-form" onSubmit={registerUser}>
-            <div className="register__top-row">
-                <h3>Register here:</h3>
-                <ion-icon name="close-outline" onClick={handleClose}></ion-icon>
-            </div>
+            <h3>Register</h3>
             <input 
                 placeholder="username"
                 name="username"

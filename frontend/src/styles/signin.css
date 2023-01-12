@@ -3,12 +3,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
 
-.login__top-row, .register__top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 50%;
 }
 
 .login-form ion-icon, .register-form ion-icon {

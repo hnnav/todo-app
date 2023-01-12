@@ -18,7 +18,6 @@ function App() {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       itemService.setToken(user.token)
-      setUser(user)
     }
   }, [])
 
@@ -39,8 +38,8 @@ function App() {
   return (
     <div className={`${theme}`}>
       <Header toggleTheme={toggleTheme} theme={theme} user={user} setUser={setUser}/>
-      <CreateNew user={user}/>
-      <TodoList user={user}/>
+      {user && <CreateNew user={user}/>}
+      {user && <TodoList user={user}/>}
     </div>
   )
 }

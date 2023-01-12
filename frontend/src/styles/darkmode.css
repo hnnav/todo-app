@@ -35,8 +35,7 @@ body .dark {
 }
 
 .dark .login-form h3, .dark .register-form h3 {
-    text-shadow: 2px 2px hsl(235, 24%, 19%);
-    color: rgb(112, 112, 112);
+    color: rgb(224, 224, 224);
 }
 
 .dark .login-form ion-icon, .dark .register-form ion-icon {

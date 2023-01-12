@@ -18,22 +18,14 @@ function Login(props) {
             itemService.setToken(user.token)
             props.setUser(user)
             console.log('Login form handler:', user)
-            handleClose()
         } catch (exception) {
             console.error(exception)
         }
     }
 
-    const handleClose = () => {
-        props.setLoginWindow(false)
-    }
-    
     return (
         <form className="login-form" onSubmit={handleLogin}>
-            <div className="login__top-row">
-                <h3>Login here:</h3>
-                <ion-icon name="close-outline" onClick={handleClose}></ion-icon>
-            </div>
+            <h3>Login</h3>
             <input 
                 placeholder="username"
                 value={username}
