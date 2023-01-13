@@ -7,17 +7,16 @@ function Register(props) {
     const [password, setPassword] = useState('')
 
     function registerUser(e) {
-        e.preventDefault();
+        e.preventDefault()
+
         const newUser = {
             username: e.target.username.value,
             password: e.target.password.value,
         }
         userService.createNewUser(newUser)
-        handleClose()
-    }
-
-    const handleClose = () => {
-        props.setRegisterWindow(false)
+        alert("Register successful")
+        setUsername('')
+        setPassword('')
     }
 
     return (

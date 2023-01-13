@@ -5,7 +5,7 @@ body {
     background-image: url("/images/bg-mobile-light.jpg");
     background-repeat: no-repeat;
     background-color: hsl(0, 0%, 98%);
-    background-size: 100% 110%;
+    background-size: 100% 400px;
 
     display: flex;
     flex-direction: column;
