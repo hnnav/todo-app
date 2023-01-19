@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast'
 import React, { useState } from 'react'
 import itemService from "../service/items"
 import loginService from "../service/login"
@@ -18,8 +19,10 @@ function Login(props) {
             itemService.setToken(user.token)
             props.setUser(user)
             console.log('Login form handler:', user)
+            toast.success('Successfully logged in')
         } catch (exception) {
             console.error(exception)
+            toast.error(exception.response.data.error)
         }
     }
 

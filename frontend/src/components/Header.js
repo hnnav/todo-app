@@ -4,7 +4,7 @@ import Login from './Login'
 import Register from './Register'
 import itemService from "../service/items"
 
-function Header( {theme, toggleTheme, user, setUser} ) {
+function Header( {theme, toggleTheme, user, setUser, createNotification} ) {
 
     return (
         <div className="header">
@@ -18,8 +18,8 @@ function Header( {theme, toggleTheme, user, setUser} ) {
             {/* Not Logged In */}
             {!user && 
             <div className="header__not-logged-in">
-                <Login setUser={setUser} />
-                <Register />
+                <Login setUser={setUser} createNotification={createNotification}/>
+                <Register createNotification={createNotification}/>
             </div>}
 
             {/* Logged In */}

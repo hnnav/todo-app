@@ -4,13 +4,16 @@ import itemService from "../service/items"
 
 function TodoList({ user }) {
 
-    const [items, setItems] = useState('')
+    const [items, setItems] = useState([])
 
     // Get users items & save to state
     useEffect(() => {
         itemService.getAll().then((items) => {
-            const usersItems = items.filter(item => (item.user.id === user.id))
-            setItems(usersItems)
+            items.map(item => {
+                if (item.user && item.user.id === user.id) {
+                    setItems(item)
+                }
+            })
         })
     }, [items])
 

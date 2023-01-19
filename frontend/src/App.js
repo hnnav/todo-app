@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Toaster } from 'react-hot-toast'
 import './styles/index.css'
 import './styles/darkmode.css'
 import './styles/desktop.css'
@@ -37,9 +38,10 @@ function App() {
 
   return (
     <div className={`${theme}`}>
-      <Header toggleTheme={toggleTheme} theme={theme} user={user} setUser={setUser}/>
+      <Header toggleTheme={toggleTheme} theme={theme} user={user} setUser={setUser} />
       {user && <CreateNew user={user}/>}
       {user && <TodoList user={user}/>}
+      <Toaster position="top-right" />
     </div>
   )
 }
