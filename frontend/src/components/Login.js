@@ -20,7 +20,7 @@ function Login(props) {
             props.setUser(user)
             console.log('Login form handler:', user)
             toast.success('Successfully logged in')
-        } catch (exception) {
+        } catch(exception) {
             console.error(exception)
             toast.error(exception.response.data.error)
         }

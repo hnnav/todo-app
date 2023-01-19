@@ -1,4 +1,5 @@
 import React from 'react'
+import toast from 'react-hot-toast'
 import '../styles/header.css'
 import Login from './Login'
 import Register from './Register'
@@ -18,8 +19,8 @@ function Header( {theme, toggleTheme, user, setUser, createNotification} ) {
             {/* Not Logged In */}
             {!user && 
             <div className="header__not-logged-in">
-                <Login setUser={setUser} createNotification={createNotification}/>
-                <Register createNotification={createNotification}/>
+                <Login setUser={setUser} />
+                <Register />
             </div>}
 
             {/* Logged In */}
@@ -30,6 +31,7 @@ function Header( {theme, toggleTheme, user, setUser, createNotification} ) {
                     localStorage.clear() 
                     setUser("")
                     itemService.setToken(null)
+                    toast('Logged Out', {icon: <ion-icon name="log-out-outline" size="large"></ion-icon>})
                 }}>Logout</h3>
             </div>}
         </div>

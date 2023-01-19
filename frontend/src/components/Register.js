@@ -1,20 +1,25 @@
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import userService from "../service/users"
 
-function Register(props) {
+function Register() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    function registerUser(e) {
+    const registerUser = async (e) => {
         e.preventDefault()
 
-        const newUser = {
-            username: e.target.username.value,
-            password: e.target.password.value,
+        try {
+            await userService.createNewUser({
+                username: e.target.username.value,
+                password: e.target.password.value,
+            })
+            toast.success('User Registered - Please Log In')
+        } catch(exception) {
+            console.error(exception)
+            toast.error(exception.response.data.error)
         }
-        userService.createNewUser(newUser)
-        alert("Register successful")
         setUsername('')
         setPassword('')
     }
