@@ -12,7 +12,6 @@ function TodoList({ user }) {
         itemService.getAll().then((items) => {
             items.map(item => {
                 if (item.user && item.user.id === user.id) {
-                    // setItems(current => [...current, item]) Gives an infinite loop
                     newArray.push(item)
                     setItems(newArray)
                 }
@@ -47,24 +46,24 @@ function TodoList({ user }) {
         setFilter(e.target.id)
     }
     
-    // const filteredItems = items && items.filter((item) => {
-    //     if (filter === 'all') {
-    //         return item;
-    //     } else if (filter === 'active') {
-    //         return item.done === false
-    //     } else if (filter === 'completed') {
-    //         return item.done === true
-    //     }
-    // })
+    const filteredItems = items && items.filter((item) => {
+        if (filter === 'all') {
+            return item;
+        } else if (filter === 'active') {
+            return item.done === false
+        } else if (filter === 'completed') {
+            return item.done === true
+        }
+    })
 
     // Number of items not done
-    // let itemsLeft = items && items.filter(item => (item.done === false)).length
+    let itemsLeft = items && items.filter(item => (item.done === false)).length
 
     return (
         <div>
-            {console.log()}
+            {console.log(items)}
             <div className="todo-list">
-                {items && items.map(({id, content, done}) => {
+                {filteredItems && filteredItems.map(({id, content, done}) => {
                     return <div key={id} className="item">
                         <img 
                             className={`${done ? "checked-circle" : "empty-circle"}`} 
@@ -76,7 +75,7 @@ function TodoList({ user }) {
                     </div>
                 })}
                 <div className="bottom-row">
-                    {/* <p>{itemsLeft} items left</p> */}
+                    <p>{itemsLeft} items left</p>
                     <p className="clear-completed" onClick={handleClearCompleted}>Clear completed</p>
                 </div>
             </div>
