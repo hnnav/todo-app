@@ -6,18 +6,19 @@ function TodoList({ user }) {
 
     const [items, setItems] = useState([])
 
-    // Get users items & save to state
+    // All items
     useEffect(() => {
-        const newArray = []
-        itemService.getAll().then((items) => {
-            items.map(item => {
-                if (item.user && item.user.id === user.id) {
-                    newArray.push(item)
-                    setItems(newArray)
-                }
-            })
-        })
-    }, [items])
+        itemService.getAll().then((item) => {
+          setItems(item);
+        });
+    }, [items]);
+
+    // Users items
+    const usersItems = items.filter((item) => {
+        if (item.user && item.user.id === user.id) {
+            return item;
+        }
+    })
 
     // DELETE by id
     const handleDelete = async (id) => {
@@ -42,11 +43,12 @@ function TodoList({ user }) {
 
     // Filter items (all / active / completed)
     const [filter, setFilter] = useState('all');
+    
     let handleFilter = (e) => {
         setFilter(e.target.id)
     }
     
-    const filteredItems = items && items.filter((item) => {
+    const filteredItems = usersItems && usersItems.filter((item) => {
         if (filter === 'all') {
             return item;
         } else if (filter === 'active') {
@@ -57,11 +59,10 @@ function TodoList({ user }) {
     })
 
     // Number of items not done
-    let itemsLeft = items && items.filter(item => (item.done === false)).length
+    let itemsLeft = usersItems && usersItems.filter(item => (item.done === false)).length
 
     return (
         <div>
-            {console.log(items)}
             <div className="todo-list">
                 {filteredItems && filteredItems.map(({id, content, done}) => {
                     return <div key={id} className="item">
