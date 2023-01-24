@@ -5,7 +5,7 @@ import Login from './Login'
 import Register from './Register'
 import itemService from "../service/items"
 
-function Header( {theme, toggleTheme, user, setUser, createNotification} ) {
+function Header({ theme, toggleTheme, user, setUser }) {
 
     return (
         <div className="header">

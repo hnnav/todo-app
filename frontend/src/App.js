@@ -19,6 +19,7 @@ function App() {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       itemService.setToken(user.token)
+      setUser(user)
     }
   }, [])
 
