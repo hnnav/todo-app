@@ -17,25 +17,4 @@
     cursor: pointer;
 }
 
-.header__not-logged-in {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px
-}
-
-.header__not-logged-in h3 {
-    font-size: 18px;
-}
-
-.header__not-logged-in h3:hover {
-    color: lightgrey;
-    cursor: pointer;
-}
-
-.header__logged-in {
-    letter-spacing: 2px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 

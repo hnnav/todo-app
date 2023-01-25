@@ -4,6 +4,7 @@ import '../styles/header.css'
 import Login from './Login'
 import Register from './Register'
 import itemService from "../service/items"
+import SocialLogin from './SocialLogin'
 
 function Header({ theme, toggleTheme, user, setUser }) {
 
@@ -19,8 +20,13 @@ function Header({ theme, toggleTheme, user, setUser }) {
             {/* Not Logged In */}
             {!user && 
             <div className="header__not-logged-in">
-                <Login setUser={setUser} />
-                <Register />
+                <div className="login-register">
+                    <Login setUser={setUser} />
+                    <Register />
+                </div>
+                <div className="social-login">
+                    <SocialLogin />
+                </div>
             </div>}
 
             {/* Logged In */}

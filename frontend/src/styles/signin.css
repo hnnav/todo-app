@@ -1,3 +1,42 @@
+.login-register {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.social-login {
+    margin-top: 25px;
+    font-size: 9px;
+}
+
+.github-google {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.github, .google {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header__not-logged-in h3 {
+    font-size: 18px;
+}
+
+.header__not-logged-in h3:hover {
+    color: lightgrey;
+    cursor: pointer;
+}
+
+.header__logged-in {
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .register-form, .login-form {
     margin-top: 20px;
     display: flex;

@@ -34,6 +34,10 @@ body .dark {
     color: rgb(112, 112, 112);
 }
 
+.dark .github-google {
+    color: rgb(224, 224, 224);
+}
+
 .dark .login-form h3, .dark .register-form h3 {
     color: rgb(224, 224, 224);
 }
