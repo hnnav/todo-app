@@ -4,7 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
-const jwt = require('jsonwebtoken')
+const bodyParser = require('body-parser')
 
 // database
 mongoose
@@ -15,6 +15,7 @@ mongoose
 // middleware
 app.use(cors())
 app.use(express.json())
+app.use(bodyParser.json())
 
 // routers
 const itemsRouter = require('./controllers/item')
@@ -25,6 +26,9 @@ app.use('/api/users', usersRouter)
 
 const loginRouter = require('./controllers/login')
 app.use('/api/login', loginRouter)
+
+const githubRouter = require('./controllers/github')
+app.use('/api/github', githubRouter)
 
 // port
 const port = process.env.PORT || 8080

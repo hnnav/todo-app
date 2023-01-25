@@ -12,13 +12,11 @@
 .github-google {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
-.github, .google {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.github-google:hover {
+    cursor: pointer;
 }
 
 .header__not-logged-in h3 {
