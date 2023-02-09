@@ -17,4 +17,6 @@
     cursor: pointer;
 }
 
-
+.logout:hover {
+    cursor: pointer;
+}

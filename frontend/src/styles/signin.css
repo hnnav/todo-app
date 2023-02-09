@@ -15,17 +15,12 @@
     gap: 10px;
 }
 
-.github-google:hover {
+.github:hover, .google:hover {
     cursor: pointer;
 }
 
 .header__not-logged-in h3 {
     font-size: 18px;
-}
-
-.header__not-logged-in h3:hover {
-    color: lightgrey;
-    cursor: pointer;
 }
 
 .header__logged-in {

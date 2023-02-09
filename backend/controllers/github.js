@@ -1,44 +1,40 @@
+const fetch = (...args) =>
+    import('node-fetch').then(({default: fetch}) => fetch(...args));
 const githubRouter = require('express').Router()
-require('dotenv').config()
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args))
 
-GITHUB_CLIENT_ID='48e06549473b50a71928'
-GITHUB_SECRET='7fd7961c1a78a7497c052126f4fe63d17852e83b'
+const CLIENT_ID = "48e06549473b50a71928";
+const CLIENT_SECRET = "70cdf139860dd0a542faef3e79f68c52389330d4";
 
-// GET AccessToken
-githubRouter.get('/getAccessToken', async (req, res) => {
+githubRouter.get('/getAccessToken', async function (req, res){
 
-    console.log(req.query.code)
+    const params = "?client_id=" + CLIENT_ID + "&client_secret=" + CLIENT_SECRET + "&code=" + req.query.code;
 
-    const params = '?client_id' +  GITHUB_CLIENT_ID + '&client_secret=' + GITHUB_SECRET + '&code=' + req.query.code
-
-    await fetch('https://github.com/login/oauth/access_token' + params, {
+    await fetch("https://github.com/login/oauth/access_token" + params, {
         method: "POST",
         headers: {
             "Accept": "application/json"
         }
     }).then((response) => {
-        return response.json()
+        return response.json();
     }).then((data) => {
-        console.log('github router getAccessToken:', data)
-        res.json(data)
-    })
-})
+        console.log(data);
+        res.json(data);
+    });
+});
 
-// GET UserData, pass in accessToken as authorization header
-githubRouter.get('/getUserData', async (req, res) => {
-    req.get('Authorization')
-    await fetch('https://api.github.com/user', {
+githubRouter.get('/getUserData', async function(req, res) {
+    req.get("Authorization");
+    await fetch("https://api.github.com/user", {
         method: "GET",
         headers: {
-            "Authorization": req.get("Authorization") // Bearer <accesstoken>
+            "Authorization" : req.get("Authorization")
         }
     }).then((response) => {
-        return response.json()
+        return response.json();
     }).then((data) => {
-        console.log(data)
-        res.json(data)
-    })
-})
-  
+        console.log(data);
+        res.json(data);
+    });
+});
+
 module.exports = githubRouter
