@@ -11,20 +11,6 @@ usersRouter.get('/', async (request, response) => {
   response.json(users)
 })
 
-// GET user by ID
-// usersRouter.get("/:id", async (request, response) => {
-//   const authorization = request.get("authorization")
-//   console.log("backend auth:", authorization)
-//   let user = jwt.verify(authorization, process.env.SECRET)
-// 
-//   user = await User.findById(request.params.id)
-//   if (user) {
-//     response.json(user.toJSON())
-//   } else {
-//     response.status(404).end()
-//   }
-// })
-
 // CREATE user
 usersRouter.post('/', async (request, response) => {
   const { username, password } = request.body
@@ -33,6 +19,13 @@ usersRouter.post('/', async (request, response) => {
   if (existingUser) {
     return response.status(400).json({
       error: 'User already exists'
+    })
+  }
+
+  if (password.length === 0 || username.length === 0) {
+    console.log("validation");
+    return response.status(400).json({
+      error: "Username or password can't be blank"
     })
   }
 

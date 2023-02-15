@@ -27,9 +27,6 @@ app.use('/api/users', usersRouter)
 const loginRouter = require('./controllers/login')
 app.use('/api/login', loginRouter)
 
-const githubRouter = require('./controllers/github')
-app.use('/api/github', githubRouter)
-
 // port
 const port = process.env.PORT || 8080
 app.listen(port, () => console.log(`Server is running on ${port}`))

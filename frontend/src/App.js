@@ -45,8 +45,8 @@ function App() {
         user={user} 
         setUser={setUser} 
       />
-      {user && <CreateNew user={user}/>}
-      {user && <TodoList user={user}/>}
+      {user.id && <CreateNew user={user}/>}
+      {user.id && <TodoList user={user}/>}
       <Toaster position="top-right" />
     </div>
   )
