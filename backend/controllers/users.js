@@ -23,7 +23,6 @@ usersRouter.post('/', async (request, response) => {
   }
 
   if (password.length === 0 || username.length === 0) {
-    console.log("validation");
     return response.status(400).json({
       error: "Username or password can't be blank"
     })
@@ -38,14 +37,14 @@ usersRouter.post('/', async (request, response) => {
   })
 
   const savedUser = await user.save()
-  console.log(savedUser);
+  console.log(savedUser)
   response.status(201).json(savedUser)
 })
 
 // DELETE user
 usersRouter.delete("/:id", async (request, response) => {
-  await User.findByIdAndRemove(request.params.id);
-  response.status(204).end();
+  await User.findByIdAndRemove(request.params.id)
+  response.status(204).end()
 })
 
 module.exports = usersRouter

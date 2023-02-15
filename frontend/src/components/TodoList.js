@@ -9,15 +9,16 @@ function TodoList({ user }) {
     // All items
     useEffect(() => {
         itemService.getAll().then((item) => {
-          setItems(item);
-        });
-    }, [items]);
+          setItems(item)
+        })
+    }, [items])
 
     // Users items
     const usersItems = items.filter((item) => {
         if (item.user && item.user.id === user.id) {
-            return item;
+            return item
         }
+        return false
     })
 
     // DELETE by id
@@ -39,10 +40,10 @@ function TodoList({ user }) {
         let completedItems = items.filter(item => (item.done === true))
         let itemIds = completedItems.map(item => item.id)
         itemIds.map(id => handleDelete(id))
-    };
+    }
 
     // Filter items (all / active / completed)
-    const [filter, setFilter] = useState('all');
+    const [filter, setFilter] = useState('all')
     
     let handleFilter = (e) => {
         setFilter(e.target.id)
@@ -50,12 +51,13 @@ function TodoList({ user }) {
     
     const filteredItems = usersItems && usersItems.filter((item) => {
         if (filter === 'all') {
-            return item;
+            return item
         } else if (filter === 'active') {
             return item.done === false
         } else if (filter === 'completed') {
             return item.done === true
         }
+        return item
     })
 
     // Number of items not done

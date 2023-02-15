@@ -25,7 +25,7 @@ const updateDone = async (id, updatedItem) => {
   const config = {
     headers: { Authorization: token }
   }
-  const request = await axios.put(`${baseUrl}/${id}`, updatedItem, config)
+  await axios.put(`${baseUrl}/${id}`, updatedItem, config)
 }
 
 const deleteItem = (id) => {
