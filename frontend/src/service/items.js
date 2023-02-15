@@ -1,6 +1,6 @@
 import axios from "axios"
 // remember to switch url to 'https://todo-app-api-u0az.onrender.com/api/items' for deploying
-const baseUrl = "http://localhost:8080/api/items"
+const baseUrl = "https://todo-users-api.onrender.com/api/items"
 
 let token = null
 
