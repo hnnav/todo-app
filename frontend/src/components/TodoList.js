@@ -8,7 +8,7 @@ function TodoList( {items} ) {
         axios.delete(`https://todo-app-api-u0az.onrender.com/api/items/${id}`)
         .then(response => {console.log(response)})
         .catch((error) => console.log(error))
-    };
+    }
 
     // UPDATE done / not done
     const handleDone = async (id) => {
@@ -21,14 +21,17 @@ function TodoList( {items} ) {
         })
         .then(response => {console.log(response)})
         .catch((error) => console.log(error))
-    };
+    }
 
     // Clear completed (Delete if done)
     const handleClearCompleted = async (id) => {
         let completedItems = items.filter(item => (item.done === true))
         let itemIds = completedItems.map(item => item.id)
         itemIds.map(id => handleDelete(id))
-    };
+    }
+
+    // Items not belonging to user
+    const itemsWithoutUser = items.filter((item) => !item.user)
 
     // Filter items (all / active / completed)
     const [filter, setFilter] = useState('all');
@@ -36,8 +39,7 @@ function TodoList( {items} ) {
         setFilter(e.target.id)
     }
     
-    // eslint-disable-next-line
-    const filteredItems = items.filter((item) => {
+    const filteredItems = itemsWithoutUser.filter((item) => {
         if (filter === 'all') {
             return item;
         } else if (filter === 'active') {
@@ -48,7 +50,7 @@ function TodoList( {items} ) {
     })
     
     // Number of items not done
-    let itemsLeft = items.filter(item => (item.done === false)).length
+    let itemsLeft = itemsWithoutUser.filter(item => (item.done === false)).length
 
     return (
         <div>
